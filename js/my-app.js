@@ -19,8 +19,8 @@ var mainView = myApp.popup('.popup-login', {
     dynamicNavbar: false,
 });
 
-mainView.alert("OI AMIGO","TESTANDO", {
-	
+mainView.alert("OI AMIGO","TESTANDO2", {
+
 });
 
 
