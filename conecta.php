@@ -16,7 +16,7 @@ $ldap = new ldap('172.19.0.48');
 // VERIFICA SE AUTENTICA UM USUARIO QUALQUER
 if ($ldap->autentica($usuario,$senha)){
 
-    echo $ldap->busca_nome($ldap->usuario_ad);
+    //echo $ldap->busca_nome($ldap->usuario_ad);
 
     session_start();
 

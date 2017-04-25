@@ -14,14 +14,12 @@ var myApp = new Framework7({
 var $$ = Dom7;
 
 // Add main View
-var mainView = myApp.popup('.popup-login', {
+var mainView = myApp.addView('.view-main', {
     // Enable dynamic Navbar
     dynamicNavbar: false,
 });
 
-mainView.alert("OI AMIGO","TESTE", {
 
-});
 
 
 $(document).ready(function() {
