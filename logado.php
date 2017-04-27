@@ -1,4 +1,8 @@
+
 <?php
+
+include('entity/Usuario.class.php');
+
 
 session_start();
 if(!isset ($_SESSION['usuario']))
@@ -7,7 +11,10 @@ if(!isset ($_SESSION['usuario']))
     header('location:index.php');
 }
 
-$logado = $_SESSION['usuario'];
+
+$usuarioRecebido = $_SESSION['usuario'];
+
+
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +70,7 @@ $logado = $_SESSION['usuario'];
             <div class="user_avatar"><img src="http://stock.wikimini.org/w/images/9/95/Gnome-stock_person-avatar-profile.png" alt="" title="" /></div>
             <div class="user_details">
 
-                <p>Olá <span><?php echo $logado ?></span></p>
+                <p>Olá! <span><?php echo $usuarioRecebido->getNome(); ?></span></p>
             </div>
             <div class="user_social">
                 <ul>
@@ -107,18 +114,14 @@ $logado = $_SESSION['usuario'];
                         <div class="swiper-wrapper">
 
                             <div class="swiper-slide">
-                                <img src="images/slider/slide3.jpg" alt="" title="" />
+                                <img src="images/2.jpg" alt="" title="" />
                             </div>
                             <div class="swiper-slide">
-                                <img src="images/slider/slide2.jpg" alt="" title="" />
+                                <img src="images/1.jpg" alt="" title="" />
                             </div>
                             <div class="swiper-slide">
-                                <img src="images/slider/slide1.jpg" alt="" title="" />
-                                <div class="slider-caption">
-                                    <h2 data-swiper-parallax="-100%">PORTOCLASSROM</h2>
-                                    <span class="subtitle" data-swiper-parallax="-60%">SOLUÇÃO INTERATIVA</span>
-                                    <p data-swiper-parallax="-30%">O PORTOCLASSROM foi pensado e desenvolvido para facilitar o dia a dia na sala de aula</p>
-                                </div>
+                                <img src="images/3.jpg" alt="" title="" />
+
                             </div>
                         </div>
                     </div>
@@ -129,7 +132,7 @@ $logado = $_SESSION['usuario'];
 
                             <li><a href="index.php"><img src="images/icons/white/home.png" alt="" title="" /><span>HOME</span></a></li>
                             <li><a href="ficha.php"><img src="images/icons/white/blog.png" alt="" title="" /><span>FICHA DE OBSERVAÇÃO</span></a></li>
-                            <li><a href="lista.php"><img src="images/icons/white/contact.png" alt="" title="" /><span>LISTA DE OBSERVAÇÕES</span></a></li>
+                            <li><a href="lista.php"><img src="images/icons/white/contact.png" alt="" title="" /><span>MINHAS FICHAS</span></a></li>
 <!--                            <li><a href="features.html"><img src="images/icons/green/settings.png" alt="" title="" /><span>FEATURES</span></a></li>-->
 
 

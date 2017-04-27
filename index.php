@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="style.css">
 <link type="text/css" rel="stylesheet" href="css/swipebox.css" />
 <link type="text/css" rel="stylesheet" href="css/animations.css" />
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800" rel="stylesheet">
 </head>
 <body id="mobile_wrap">
 
@@ -29,7 +29,7 @@
 					<li><a href="features.html" class="close-panel"><img src="images/icons/green/features.png" alt="" title="" /><span>Features</span></a></li>
 					<li><a href="#" data-popup=".popup-login" class="open-popup close-panel"><img src="images/icons/green/lock.png" alt="" title="" /><span>Login</span></a></li>
 					<li><a href="team.html" class="close-panel"><img src="images/icons/green/users.png" alt="" title="" /><span>Team</span></a></li>
-					<li><a href="blog.html" class="close-panel"><img src="images/icons/green/blog.png" alt="" title="" /><span>Blog</span></a></li>		
+					<li><a href="blog.html" class="close-panel"><img src="images/icons/green/blog.png" alt="" title="" /><span>Blog</span></a></li>
 					<li><a href="photos.html" class="close-panel"><img src="images/icons/green/photos.png" alt="" title="" /><span>Photos</span></a></li>
 					<li><a href="videos.html" class="close-panel"><img src="images/icons/green/video.png" alt="" title="" /><span>Videos</span></a></li>
 					<li><a href="music.html" class="close-panel"><img src="images/icons/green/music.png" alt="" title="" /><span>Music</span></a></li>
@@ -48,21 +48,21 @@
 
     <div class="panel panel-right panel-reveal">
       <div class="user_login_info">
-	  
+
                 <div class="user_thumb">
-		  <div class="user_avatar"><img src="images/avatar.jpg" alt="" title="" /></div>  
+		  <div class="user_avatar"><img src="images/avatar.jpg" alt="" title="" /></div>
                   <div class="user_details">
                    <p>Welcome <span>John Doe</span></p>
-                  </div>  
+                  </div>
                   <div class="user_social">
       <ul>
       <li><a href="http://twitter.com/" class="external"><img src="images/icons/green/twitter.png" alt="" title="" /></a></li>
       <li><a href="http://www.facebook.com/" class="external"><img src="images/icons/green/facebook.png" alt="" title="" /></a></li>
       <li><a href="http://plus.google.com" class="external"><img src="images/icons/green/gplus.png" alt="" title="" /></a></li>
-      </ul>	  
-                  </div>     
+      </ul>
+                  </div>
                 </div>
-				
+
                   <nav class="user-nav">
                     <ul>
                       <li><a href="features.html" class="close-panel"><img src="images/icons/white/settings.png" alt="" title="" /><span>Account Settings</span></a></li>
@@ -104,7 +104,7 @@
 
 
     </div>
-    
+
 <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js" ></script>
 <script type="text/javascript" src="js/framework7.js"></script>

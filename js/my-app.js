@@ -21,6 +21,14 @@ var mainView = myApp.addView('.view-main', {
 
 
 
+$$('.open-indicator').on('click', function () {
+    myApp.showIndicator();
+    setTimeout(function () {
+        myApp.hideIndicator();
+    }, 2000);
+});
+
+
 
 $(document).ready(function() {
 		$("#RegisterForm").validate();

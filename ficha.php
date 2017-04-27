@@ -1,3 +1,20 @@
+<?php
+
+include('entity/Usuario.class.php');
+
+session_start();
+if(!isset ($_SESSION['usuario']))
+{
+    unset($_SESSION['usuario']);
+    header('location:index.php');
+}
+
+
+$usuarioRecebido = $_SESSION['usuario'];
+
+
+?>
+
 <div class="pages">
   <div data-page="form" class="page no-toolbar no-navbar">
     <div class="page-content">
@@ -13,108 +30,281 @@
 	
      <div id="pages_maincontent">
      
-              <h2 class="page_title">CUSTOM FORM</h2> 
+<!--              <h2 class="page_title">CUSTOM FORM</h2> -->
      
      <div class="page_single layout_fullwidth_padding">
 
                 <div class="contactform">
-                <form>
+
+
+
+
+
+
+                    <form method="post" action="controller/fichaController.php">
+
+                        <div class="form_row">
+                        <label>Avaliador(a):</label>
+                            <h4><?php echo $usuarioRecebido->getNome(); ?></h4>
+                        <input type="hidden" name="nome" value="<?php echo $usuarioRecebido->getNome();?>" class="form_input" di />
+                        </div>
+
+                    <div class="form_row">
+                        <label>Câmpus:</label>
+                        <div class="selector_overlay">
+                            <select  name="campus"  id="selectoptions">
+                                <option value="" disabled="disabled" selected>Selecione o câmpus abaixo</option>
+                                <option value="campusMorumbi">Câmpus Morumbi</option>
+                                <option value="campusValinhos">Câmpus Valinhos</option>
+                                <option value="campusPanamby">Câmpus Panamby</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+
                 <div class="form_row">
-                <label>Name:</label>
-                <input type="text" name="name" value="" class="form_input" />
-                </div>
-                
-                <div class="form_row">
-                <label>Email:</label>
-                <input type="text" name="email" value="" class="form_input" />
-                </div>
-                
-                <div class="form_row">
-                <label>Select:</label>
+                <label>Disciplina:</label>
 			<div class="selector_overlay">
-				<select class="cs-select cs-skin-overlay" id="selectoptions">
-					<option value="" disabled="disabled" selected>select options</option>
-					<option value="1">select one</option>
-					<option value="2">select two</option>
-					<option value="3">select three</option>
-					<option value="4">select four</option>
-					<option value="5">select five</option>
+				<select name="disciplina" id="selectoptions">
+					<option value="" disabled="disabled" selected>Selecione a disciplina abaixo</option>
+					<option value="alemao">Alemão</option>
+					<option value="portugues">Português</option>
+					<option value="matematica">Matemática</option>
+					<option value="ciencias">Ciências</option>
+					<option value="fisica">Fisica</option>
+                    <option value="quimica">Ciências</option>
+                    <option value="geografia">Geográfia</option>
+                    <option value="historia">História</option>
+                    <option value="edfisica">Ed. Fisica</option>
 				</select>
 			</div>	
                 </div>
-                
-                
-                <div class="form_row">
-                        <label>Radio:</label>
-                        <div class="form_row_right">
-                          <label class="label-radio item-content">
-                            <!-- Checked by default -->
-                            <input type="radio" name="my-radio" value="Books" checked="checked">
-                            <div class="item-inner">
-                              <div class="item-title">Books</div>
-                            </div>
-                          </label>
-                          
-                          <label class="label-radio item-content">
-                            <!-- Checked by default -->
-                            <input type="radio" name="my-radio" value="Movies">
-                            <div class="item-inner">
-                              <div class="item-title">Movies</div>
-                            </div>
-                          </label>
-                         </div> 
-                </div>
-                
-                <div class="form_row">
-                        <label>Checkbox:</label>
-                        <div class="form_row_right">
-                          <label class="label-checkbox item-content">
-                            <!-- Checked by default -->
-                            <input type="checkbox" name="my-checkbox" value="Books" checked="checked">
-                            <div class="item-media">
-                              <i class="icon icon-form-checkbox"></i>
-                            </div>
-                            <div class="item-inner">
-                              <div class="item-title">Books</div>
-                            </div>
-                          </label>
-        
-                          <label class="label-checkbox item-content">
-                            <input type="checkbox" name="my-checkbox" value="Movies">
-                            <div class="item-media">
-                              <i class="icon icon-form-checkbox"></i>
-                            </div>
-                            <div class="item-inner">
-                              <div class="item-title">Movies</div>
-                            </div>
-                          </label>
-                       </div>   
-                </div>
-                
-                <div class="form_row">  
-                 	 <label>Switch:</label>
-                     <div class="form_row_right">        
-                      <div class="item-content">
-                        <div class="item-inner">
-                          <div class="item-title">On/Off</div>
-                          <div class="item-input">
-                            <label class="label-switch">
-                              <input type="checkbox">
-                              <div class="checkbox"></div>
-                            </label>
-                          </div>
+
+
+
+                    <div class="form_row">
+                        <label>Nível:</label>
+                        <div class="selector_overlay">
+                            <select name="nivel"  id="selectoptions">
+                                <option value="" disabled="disabled" selected>Selecione abaixo o nível</option>
+                                <option value="fundamental1">Fundamental I</option>
+                                <option value="fundamental2">Fundamental II</option>
+                                <option value="ensinoMedio">Ensino Médio</option>
+
+                            </select>
                         </div>
-                      </div>
-                      </div>
-                 </div>
-                 
-                <div class="form_row"> 
-               <label>Message:</label>
-                <textarea name="message" class="form_textarea" rows="" cols="">your message here</textarea>
+                    </div>
+
+                <div class="form_row">
+                    <p>&nbsp;</p>
                 </div>
-                
-                
-                <input type="submit" name="submit" class="form_submit" id="submit" value="Send" />
+
+                <!--QUESTÃO 01-->
+                <div  class="form_row">
+                        <label>1) Criação de ambiente de aprendizagem (espaços e recursos)</label>
+                        <p>Como o professor deixa o espaço e a preparação da sala de aula ou outros espaços ?</p>
+
+                    <div class="form_row_right">
+                        <label class="label-radio item-content">
+                            <!-- Checked by default -->
+                            <input type="radio" name="questao01" value="excelente" checked="checked">
+                            <div class="item-inner">
+                                <div class="item-title">Excelente</div>
+                            </div>
+                        </label>
+
+                        <label class="label-radio item-content">
+                            <!-- Checked by default -->
+                            <input type="radio" name="questao01" value="satisfatorio">
+                            <div class="item-inner">
+                                <div class="item-title">Satisfatório</div>
+                            </div>
+                        </label>
+
+                        <label class="label-radio item-content">
+                            <!-- Checked by default -->
+                            <input type="radio" name="questao01" value="ensinomedio">
+                            <div class="item-inner">
+                                <div class="item-title">Insatisfatório</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                    <!--QUESTÃO 02-->
+                    <div  class="form_row">
+                        <label>2) Organização da aula (coerência)</label>
+<!--                        <p>Como o professor deixa o espaço e a preparação da sala de aula ou outros espaços ?</p>-->
+
+                        <div class="form_row_right">
+                            <label class="label-radio item-content">
+                                <!-- Checked by default -->
+                                <input type="radio" name="questao02" value="excelente" checked="checked">
+                                <div class="item-inner">
+                                    <div class="item-title">Excelente</div>
+                                </div>
+                            </label>
+
+                            <label class="label-radio item-content">
+                                <!-- Checked by default -->
+                                <input type="radio" name="questao02" value="satisfatorio">
+                                <div class="item-inner">
+                                    <div class="item-title">Satisfatório</div>
+                                </div>
+                            </label>
+
+                            <label class="label-radio item-content">
+                                <!-- Checked by default -->
+                                <input type="radio" name="questao02" value="insatisfatorio">
+                                <div class="item-inner">
+                                    <div class="item-title">Insatisfatório</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+
+
+                    <!--QUESTÃO 03-->
+                    <div  class="form_row">
+                        <label>3) Interações na aula  </label>
+                        <p>(participação/produção do aluno, metodologia)</p>
+
+                        <div class="form_row_right">
+                            <label class="label-radio item-content">
+                                <!-- Checked by default -->
+                                <input type="radio" name="questao03" value="excelente" checked="checked">
+                                <div class="item-inner">
+                                    <div class="item-title">Excelente</div>
+                                </div>
+                            </label>
+
+                            <label class="label-radio item-content">
+                                <!-- Checked by default -->
+                                <input type="radio" name="questao03" value="satisfatorio">
+                                <div class="item-inner">
+                                    <div class="item-title">Satisfatório</div>
+                                </div>
+                            </label>
+
+                            <label class="label-radio item-content">
+                                <!-- Checked by default -->
+                                <input type="radio" name="questao03" value="insatisfatorio">
+                                <div class="item-inner">
+                                    <div class="item-title">Insatisfatório</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!--QUESTÃO 04-->
+                    <div  class="form_row">
+                        <label>4) Motivação da aula </label>
+                        <p>(entusiasmo professor x aluno)</p>
+
+                        <div class="form_row_right">
+                            <label class="label-radio item-content">
+                                <!-- Checked by default -->
+                                <input type="radio" name="questao04" value="excelente" checked="checked">
+                                <div class="item-inner">
+                                    <div class="item-title">Excelente</div>
+                                </div>
+                            </label>
+
+                            <label class="label-radio item-content">
+                                <!-- Checked by default -->
+                                <input type="radio" name="questao04" value="satisfatorio">
+                                <div class="item-inner">
+                                    <div class="item-title">Satisfatório</div>
+                                </div>
+                            </label>
+
+                            <label class="label-radio item-content">
+                                <!-- Checked by default -->
+                                <input type="radio" name="questao04" value="insatisfatorio">
+                                <div class="item-inner">
+                                    <div class="item-title">Insatisfatório</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!--QUESTÃO 05-->
+                    <div  class="form_row">
+                        <label>5) Relação aluno x professor </label>
+                        <p>(vínculos estabelecidos)</p>
+
+                        <div class="form_row_right">
+                            <label class="label-radio item-content">
+                                <!-- Checked by default -->
+                                <input type="radio" name="questao05" value="excelente" checked="checked">
+                                <div class="item-inner">
+                                    <div class="item-title">Excelente</div>
+                                </div>
+                            </label>
+
+                            <label class="label-radio item-content">
+                                <!-- Checked by default -->
+                                <input type="radio" name="questao05" value="satisfatorio">
+                                <div class="item-inner">
+                                    <div class="item-title">Satisfatório</div>
+                                </div>
+                            </label>
+
+                            <label class="label-radio item-content">
+                                <!-- Checked by default -->
+                                <input type="radio" name="questao05" value="insatisfatorio">
+                                <div class="item-inner">
+                                    <div class="item-title">Insatisfatório</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!--QUESTÃO 06-->
+                    <div  class="form_row">
+                        <label>6) Conteúdos </label>
+                        <p>( aprofundamento, estimula a pesquisa - extrapola “contexto de mundo”)</p>
+
+                        <div class="form_row_right">
+                            <label class="label-radio item-content">
+                                <!-- Checked by default -->
+                                <input type="radio" name="questao06" value="excelente" checked="checked">
+                                <div class="item-inner">
+                                    <div class="item-title">Excelente</div>
+                                </div>
+                            </label>
+
+                            <label class="label-radio item-content">
+                                <!-- Checked by default -->
+                                <input type="radio" name="questao06" value="satisfatorio">
+                                <div class="item-inner">
+                                    <div class="item-title">Satisfatório</div>
+                                </div>
+                            </label>
+
+                            <label class="label-radio item-content">
+                                <!-- Checked by default -->
+                                <input type="radio" name="questao06" value="insatisfatorio">
+                                <div class="item-inner">
+                                    <div class="item-title">Insatisfatório</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="form_row">
+               <label>Parecer Observador:</label>
+                <textarea name="parecer" class="form_textarea" rows="20" cols="" placeholder="Digite aqui o seu parecer"></textarea>
+                </div>
+
+
+                <input type="submit" name="submit" class="form_submit open-indicator" id="submit" value="Enviar" />
                 </form>
                 </div>
 
