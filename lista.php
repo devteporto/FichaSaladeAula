@@ -1,114 +1,117 @@
+
+
+
 <div class="pages">
   <div data-page="tables" class="page no-toolbar no-navbar">
     <div class="page-content">
     
 	<div class="navbarpages">
 		<div class="navbar_left">
-			<div class="logo_text"><a href="index.html"><span>up</span>mobile</a></div>
+			<div class="logo_text"><a href="logado.php"><span>techporto</span>classroom</a></div>
 		</div>			
 		<a href="#" data-panel="left" class="open-panel">
 			<div class="navbar_right"><img src="images/icons/green/menu.png" alt="" title="" /></div>
 		</a>					
 	</div>
-     
+
+        <?php
+
+        include('entity/Ficha.class.php');
+        include_once "dao/DAO.class.php";
+        include_once "connection/conexao.php";
+        include('entity/Usuario.class.php');
+
+
+        session_start();
+
+        $usuarioLogado = $_SESSION['usuario'];
+        $fichaConection = FichaDAO::getInstance(Conexao::getInstance());
+
+
+
+        ?>
      <div id="pages_maincontent">
      
-              <h2 class="page_title">TABLES</h2> 
+              <h2 class="page_title">FICHAS DE ACOMPANHAMENTO</h2>
      
      <div class="page_single layout_fullwidth_padding">
-              
-              <h3>Simple table</h3>
-              
-                <ul class="responsive_table">
+
+         <div class="mensagem" id="mensagem"></div>
+         <div class="error" id="error"></div>
+
+
+
+
+                 <ul style="margin-top: 35px" class="responsive_table">
                      <li class="table_row">
-                        <div class="table_section_small">Nr</div>
-                        <div class="table_section">Service</div>
-                        <div class="table_section">Price</div> 
+                         <div class="table_section_14">Profº Avaliado</div>
+                         <div class="table_section_14">Nivel</div>
+                         <div class="table_section_14">Disciplina</div>
+                         <div class="table_section_14"></div>
                      </li>
-                     <li class="table_row">
-                        <div class="table_section_small">01</div>
-                        <div class="table_section">Web design</div>
-                        <div class="table_section">$100 / hour</div> 
-                     </li>
-                     <li class="table_row">
-                        <div class="table_section_small">02</div>
-                        <div class="table_section">Drawing</div>
-                        <div class="table_section">$60 / hour</div> 
-                     </li>
-                     <li class="table_row">
-                        <div class="table_section_small">03</div>
-                        <div class="table_section">Illustration</div>
-                        <div class="table_section">$80 / hour</div> 
-                     </li>
-                     <li class="table_row">
-                        <div class="table_section_small">04</div>
-                        <div class="table_section">Layout design</div>
-                        <div class="table_section">$80 / hour</div> 
-                     </li>
-                     <li class="table_row">
-                        <div class="table_section_small">05</div>
-                        <div class="table_section">Programming</div>
-                        <div class="table_section">$120 / hour</div> 
-                     </li>
+
+
+                <?php
+                        //RECUPERA A LISTA DE FICHAS CADASTRADAS USANDO A FUNCAO LISTAR DA DAO
+                       $fichas = $fichaConection->listar($usuarioLogado->getNome());
+
+
+
+                        if (count($fichas) > 0){
+
+
+                        foreach ($fichas as  $ficha) {
+
+                          $nomeSobrenome = $fichaConection->nome_sobrenome($ficha->getUser());
+
+                        ?>
+
+
+
+                        <li class="table_row">
+                            <div class="table_section_14"><?php echo $nomeSobrenome?></div>
+                            <div class="table_section_14"><?php echo $ficha->getNivel()?></div>
+                            <div class="table_section_14"><?php echo $ficha->getDisciplina()?></div>
+
+                            <div style="width: 50px" class="table_section_small">
+
+                                <a href="#" onclick="excluir(<?php echo $ficha->getId()?>)"><b>Excluir</b></a>
+
+                            </div>
+                            <div class="table_section_small">
+
+                                <a href="editar.php?id=<?=$ficha->getId()?>"><b>Editar</b></a>
+
+                            </div>
+
+
+                        </li>
+
+
+
+                <?php }?>
+
                 </ul>
-              
-			    <p>With this table design you can create a list of web design services.</p>
-              
-                <h3>Price table</h3>
-              
-                <ul class="responsive_table">
-                     <li class="table_row">
-                        <div class="table_section_14">&nbsp;</div>
-                        <div class="table_section_14">Medium</div>
-                        <div class="table_section_14">Business</div>
-                        <div class="table_section_14">Deluxe</div>  
-                     </li>
-                     <li class="table_row">
-                        <div class="table_section_14">Storage</div>
-                        <div class="table_section_14">1 GB</div>
-                        <div class="table_section_14">2 GB</div> 
-                        <div class="table_section_14">4 GB</div> 
-                     </li>
-                     <li class="table_row">
-                        <div class="table_section_14">Bandwidth</div>
-                        <div class="table_section_14">50 GB</div>
-                        <div class="table_section_14">100 GB</div> 
-                        <div class="table_section_14">Unlimited</div> 
-                     </li>
-                     <li class="table_row">
-                        <div class="table_section_14">Databases</div>
-                        <div class="table_section_14">50</div>
-                        <div class="table_section_14">Unlimited</div> 
-                        <div class="table_section_14">Unlimited</div> 
-                     </li>
-                     <li class="table_row">
-                        <div class="table_section_14">PHP</div>
-                        <div class="table_section_14"><img src="images/checked.png" alt="" title="" /></div>
-                        <div class="table_section_14"><img src="images/checked.png" alt="" title="" /></div> 
-                        <div class="table_section_14"><img src="images/checked.png" alt="" title="" /></div> 
-                     </li>
-                     <li class="table_row">
-                        <div class="table_section_14">Price</div>
-                        <div class="table_section_14"><strong>$ 50</strong></div>
-                        <div class="table_section_14"><strong>$ 100</strong></div> 
-                        <div class="table_section_14"><strong>$ 200</strong></div> 
-                     </li>
-                     <li class="table_row">
-                        <div class="table_section_14">&nbsp;</div>
-                        <div class="table_section_14"><a href="contact.html" class="buy_now">BUY NOW</a></div>
-                        <div class="table_section_14"><a href="contact.html" class="buy_now">BUY NOW</a></div> 
-                        <div class="table_section_14"><a href="contact.html" class="buy_now">BUY NOW</a></div> 
-                     </li>
-                </ul>
-              
-			    <p>With this table design you can create a price table for your services.</p>
-              
-              
+
+
+                <?php }else{?>
+
+
+                    <h3 style="text-align: center"><?=$usuarioLogado->getNome()?>, você ainda não cadastrou nenhuma ficha :(</h3>
+
+                <?php } ?>
               </div>
-      
+
+
+
+
       </div>
       
       
     </div>
   </div>
+
 </div>
+
+
+

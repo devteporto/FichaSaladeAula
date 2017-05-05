@@ -6,15 +6,24 @@ include_once "../connection/conexao.php";
 
 $fichaConection = FichaDAO::getInstance(Conexao::getInstance());
 
+$action = isset($_GET['action']);
 
-    if($_POST){
+echo $action;
+
+
+
+    $controle = $_POST['envio'];
+
+    echo $controle;
+
+
+    if($controle === "cadastrar"){
 
         try{
 
             $ficha = new Ficha();
 
             //PEGA A INSTANCIA DO USUARIO ARMAZENADO NA SECAO
-
             $ficha->setUser($_POST['nome']);
             $ficha->setCampus($_POST['campus']);
             $ficha->setDisciplina($_POST['disciplina']);
@@ -27,8 +36,10 @@ $fichaConection = FichaDAO::getInstance(Conexao::getInstance());
             $ficha->setQ6($_POST['questao06']);
             $ficha->setParecer($_POST['parecer']);
 
-
+            //CADASTRA A FICHA
             $fichaConection->cadastrar($ficha);
+
+            echo "PASSOU POR AQUI E CADASTROU";
 
 
         }catch (Exception $e){
@@ -36,10 +47,39 @@ $fichaConection = FichaDAO::getInstance(Conexao::getInstance());
         }
 
     }
+    elseif($controle === "editar"){
+
+    try{
+
+        $ficha = new Ficha();
+
+        //PEGA A INSTANCIA DO USUARIO ARMAZENADO NA SECAO
+        $ficha->setUser($_POST['nome']);
+        $ficha->setCampus($_POST['campus']);
+        $ficha->setDisciplina($_POST['disciplina']);
+        $ficha->setNivel($_POST['nivel']);
+
+
+        echo $ficha->getDisciplina();
+
+
+        //CADASTRA A FICHA
+        $fichaConection->editar($ficha);
+
+        echo "PASSOU POR AQUI E EDITOU";
+
+
+    }catch (Exception $e){
+        echo "Erro ao capturar dados do Formulário"; // Retorna um erro caso exista problema com os dados do HTML
+    }
 
 
 
-    //INICIA A SEÇÃO E RECUPERA O OBJETO USUARIO DO LOGIN
+} else {
+
+    echo "ERRO";
+
+}
 
 
 ?>

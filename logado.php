@@ -33,6 +33,9 @@ $usuarioRecebido = $_SESSION['usuario'];
     <link type="text/css" rel="stylesheet" href="css/swipebox.css" />
     <link type="text/css" rel="stylesheet" href="css/animations.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800" rel="stylesheet">
+
+
+
 </head>
 <body id="mobile_wrap">
 
@@ -85,7 +88,14 @@ $usuarioRecebido = $_SESSION['usuario'];
             <ul>
                 <li><a href="features.html" class="close-panel"><img src="images/icons/white/briefcase.png" alt="" title="" /><span>Minhas observações</span></a></li>
                 <li><a href="features.html" class="close-panel"><img src="images/icons/white/settings.png" alt="" title="" /><span>Trocar foto perfil</span></a></li>
-                <li><a href="index.html" class="close-panel"><img src="images/icons/white/lock.png" alt="" title="" /><span>Logout</span></a></li>
+                <li>
+                    <a onclick="irpagina('controller/doLogout.php?token=<?=md5(session_id())?>')" href='' class="close-panel">
+                        <img src="images/icons/white/lock.png" alt="" title="" />
+                        <span>Logout</span>
+                    </a>
+                </li>
+
+
             </ul>
         </nav>
     </div>
@@ -103,10 +113,8 @@ $usuarioRecebido = $_SESSION['usuario'];
                 <div class="page-content homepagecontent">
 
                     <div class="homenavbar">
-                        <h1><span>porto</span>classroom</h1>
-                        <a href="#" data-panel="left" class="open-panel">
-                            <div class="navbar_right"><img src="images/icons/white/menu.png" alt="" title="" /></div>
-                        </a>
+                        <h1><span>techporto</span>classroom</h1>
+
                     </div>
 
                     <!-- Slider -->
@@ -240,15 +248,85 @@ $usuarioRecebido = $_SESSION['usuario'];
     </div>
 </div>
 
-<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="js/jquery.validate.min.js" ></script>
+
+
 <script type="text/javascript" src="js/framework7.js"></script>
 <script type="text/javascript" src="js/jquery.swipebox.js"></script>
-<script type="text/javascript" src="js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="js/email.js"></script>
-<script type="text/javascript" src="js/audio.min.js"></script>
+
+
+
 <script type="text/javascript" src="js/classie.js"></script>
 <script type="text/javascript" src="js/selectFx.js"></script>
 <script type="text/javascript" src="js/my-app.js"></script>
+
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script>
+    $(function(){
+
+        /* Delete button ajax call */
+        $('.delbtn').on( 'click', function(){
+            if(confirm('This action will delete this record. Are you sure?')){
+                var pid = $(this).data('pid');
+                $.post( "controller/listaController.php", { pid: pid })
+                    .done(function( data ) {
+                        if(data > 0){
+                            $('.success').show(3000).html("Item apagado com sucesso!").delay(3200).fadeOut(6000);
+                        }else{
+                            $('.error').show(3000).html("Erro ao apagar tente novamente").delay(3200).fadeOut(6000);;
+                        }
+                        setTimeout(function(){
+                            window.location.reload(1);
+                        }, 5000);
+                    });
+            }
+        });
+
+        /* Edit button ajax call */
+        $('.editbtn').on( 'click', function(){
+            var pid = $(this).data('pid');
+            $.get( "getrecord_ajax.php", { id: pid })
+                .done(function( product ) {
+                    data = $.parseJSON(product);
+
+                    if(data){
+                        $('#prod_id').val(data.id);
+                        $('#product_name').val(data.product_name);
+                        $('#price').val(data.price);
+                        $('#category').val(data.category);
+                        $("#saverecords").val('Save Records');
+                    }
+                });
+        });
+
+        /* Edit button ajax call */
+        $('#saverecords').on( 'click', function(){
+            var prod_id  = $('#prod_id').val();
+            var product = $('#product_name').val();
+            var price   = $('#price').val();
+            var category = $('#category').val();
+            if(!product || !price || !category){
+                $('.error').show(3000).html("All fields are required.").delay(3200).fadeOut(3000);
+            }else{
+                if(prod_id){
+                    var url = 'edit_record_ajax.php';
+                }else{
+                    var url = 'add_records_ajax.php';
+                }
+                $.post( url, {prod_id:prod_id, product: product, category: category, price: price  })
+                    .done(function( data ) {
+                        if(data > 0){
+                            $('.success').show(3000).html("Record saved successfully.").delay(2000).fadeOut(1000);
+                        }else{
+                            $('.error').show(3000).html("Record could not be saved. Please try again.").delay(2000).fadeOut(1000);
+                        }
+                        $("#saverecords").val('Add Records');
+                        setTimeout(function(){
+                            window.location.reload(1);
+                        }, 15000);
+                    });
+            }
+        });
+    });
+</script>
 </body>
 </html>

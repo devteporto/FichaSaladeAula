@@ -13,6 +13,8 @@ if(!isset ($_SESSION['usuario']))
 $usuarioRecebido = $_SESSION['usuario'];
 
 
+
+
 ?>
 
 <div class="pages">
@@ -21,9 +23,9 @@ $usuarioRecebido = $_SESSION['usuario'];
     
 	<div class="navbarpages">
 		<div class="navbar_left">
-			<div class="logo_text"><a href="index.html"><span>porto</span>classroom</a></div>
+			<div class="logo_text"><a href="logado.php"><span>techporto</span>classroom</a></div>
 		</div>			
-		<a href="#" data-panel="left" class="open-panel">
+		<a href="index.php" data-panel="left" >
 			<div class="navbar_right"><img src="images/icons/green/menu.png" alt="" title="" /></div>
 		</a>					
 	</div>
@@ -37,68 +39,120 @@ $usuarioRecebido = $_SESSION['usuario'];
                 <div class="contactform">
 
 
-
-
-
-
-                    <form method="post" action="controller/fichaController.php">
+                    <form class="form_clientes" method="post" action="controller/fichaController.php" enctype="multipart/form-data">
 
                         <div class="form_row">
                         <label>Avaliador(a):</label>
                             <h4><?php echo $usuarioRecebido->getNome(); ?></h4>
-                        <input type="hidden" name="nome" value="<?php echo $usuarioRecebido->getNome();?>" class="form_input" di />
+                        <input type="hidden" name="nome" value="<?php echo $usuarioRecebido->getNome();?>" class="form_input" />
                         </div>
 
-                    <div class="form_row">
-                        <label>Câmpus:</label>
-                        <div class="selector_overlay">
-                            <select  name="campus"  id="selectoptions">
-                                <option value="" disabled="disabled" selected>Selecione o câmpus abaixo</option>
-                                <option value="campusMorumbi">Câmpus Morumbi</option>
-                                <option value="campusValinhos">Câmpus Valinhos</option>
-                                <option value="campusPanamby">Câmpus Panamby</option>
 
-                            </select>
+                        <div class="form_row">
+                            <label>Professor(a) Avaliado:</label>
+
+                            <input type="text" name="professorAvaliado" value="" class="form_input" />
                         </div>
-                    </div>
 
+                        <div class="form_row">
+                            <label>Turma:</label><p style="font-size: 9px">ex: F-7MA1, F-7MA2</p>
 
-                <div class="form_row">
-                <label>Disciplina:</label>
-			<div class="selector_overlay">
-				<select name="disciplina" id="selectoptions">
-					<option value="" disabled="disabled" selected>Selecione a disciplina abaixo</option>
-					<option value="alemao">Alemão</option>
-					<option value="portugues">Português</option>
-					<option value="matematica">Matemática</option>
-					<option value="ciencias">Ciências</option>
-					<option value="fisica">Fisica</option>
-                    <option value="quimica">Ciências</option>
-                    <option value="geografia">Geográfia</option>
-                    <option value="historia">História</option>
-                    <option value="edfisica">Ed. Fisica</option>
-				</select>
-			</div>	
-                </div>
-
-
-
-                    <div class="form_row">
-                        <label>Nível:</label>
-                        <div class="selector_overlay">
-                            <select name="nivel"  id="selectoptions">
-                                <option value="" disabled="disabled" selected>Selecione abaixo o nível</option>
-                                <option value="fundamental1">Fundamental I</option>
-                                <option value="fundamental2">Fundamental II</option>
-                                <option value="ensinoMedio">Ensino Médio</option>
-
-                            </select>
+                            <input type="text" name="turma" value="" class="form_input" />
                         </div>
-                    </div>
 
-                <div class="form_row">
-                    <p>&nbsp;</p>
-                </div>
+
+
+                        <div class="form_row">
+                            <label>Disciplina:</label>
+                            <div class="selector_overlay">
+                                <select  class="cs-select" name="disciplina" id="selectoptions">
+                                    <option value="" disabled="disabled" selected>Selecione a disciplina abaixo</option>
+                                    <option value="Alemao">Alemão</option>
+                                    <option value="Portugues">Português</option>
+                                    <option value="Matemática">Matemática</option>
+                                    <option value="Ciências">Ciências</option>
+                                    <option value="Fisica">Fisica</option>
+                                    <option value="Quimica">Ciências</option>
+                                    <option value="Geografia">Geográfia</option>
+                                    <option value="História">História</option>
+                                    <option value="Ed. Fisica">Ed. Fisica</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form_row">
+                            <p>&nbsp;</p>
+                        </div>
+
+
+                        <div  class="form_row">
+                            <label>Câmpus</label>
+
+
+                            <div class="form_row_right">
+                                <label class="label-radio item-content">
+                                    <!-- Checked by default -->
+                                    <input type="radio" name="campus" value="Morumbi" checked="checked">
+                                    <div class="item-inner">
+                                        <div class="item-title">Morumbi</div>
+                                    </div>
+                                </label>
+
+                                <label class="label-radio item-content">
+                                    <!-- Checked by default -->
+                                    <input type="radio" name="campus" value="Panamby">
+                                    <div class="item-inner">
+                                        <div class="item-title">Panamby</div>
+                                    </div>
+                                </label>
+
+                                <label class="label-radio item-content">
+                                    <!-- Checked by default -->
+                                    <input type="radio" name="campus" value="Valinhos">
+                                    <div class="item-inner">
+                                        <div class="item-title">Valinhos</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+
+
+
+                        <!--NIVEL-->
+
+                        <div  class="form_row">
+                            <label>Nível</label>
+
+
+                            <div class="form_row_right">
+                                <label class="label-radio item-content">
+                                    <!-- Checked by default -->
+                                    <input type="radio" name="nivel" value="Fundamental I" checked="checked">
+                                    <div  class="item-inner">
+                                        <div class="item-title">Fundamental I</div>
+                                    </div>
+                                </label>
+
+                                <label class="label-radio item-content">
+                                    <!-- Checked by default -->
+                                    <input type="radio" name="nivel" value="Fundamental II">
+                                    <div class="item-inner">
+                                        <div class="item-title">Fundamental II</div>
+                                    </div>
+                                </label>
+
+                                <label class="label-radio item-content">
+                                    <!-- Checked by default -->
+                                    <input type="radio" name="nivel" value="Ensino Medio">
+                                    <div class="item-inner">
+                                        <div class="item-title">Ensino Médio</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+
 
                 <!--QUESTÃO 01-->
                 <div  class="form_row">
@@ -108,7 +162,7 @@ $usuarioRecebido = $_SESSION['usuario'];
                     <div class="form_row_right">
                         <label class="label-radio item-content">
                             <!-- Checked by default -->
-                            <input type="radio" name="questao01" value="excelente" checked="checked">
+                            <input type="radio" name="questao01" value="Excelente" checked="checked">
                             <div class="item-inner">
                                 <div class="item-title">Excelente</div>
                             </div>
@@ -116,7 +170,7 @@ $usuarioRecebido = $_SESSION['usuario'];
 
                         <label class="label-radio item-content">
                             <!-- Checked by default -->
-                            <input type="radio" name="questao01" value="satisfatorio">
+                            <input type="radio" name="questao01" value="Satisfatório">
                             <div class="item-inner">
                                 <div class="item-title">Satisfatório</div>
                             </div>
@@ -124,7 +178,7 @@ $usuarioRecebido = $_SESSION['usuario'];
 
                         <label class="label-radio item-content">
                             <!-- Checked by default -->
-                            <input type="radio" name="questao01" value="ensinomedio">
+                            <input type="radio" name="questao01" value="Insatisfatório">
                             <div class="item-inner">
                                 <div class="item-title">Insatisfatório</div>
                             </div>
@@ -140,7 +194,7 @@ $usuarioRecebido = $_SESSION['usuario'];
                         <div class="form_row_right">
                             <label class="label-radio item-content">
                                 <!-- Checked by default -->
-                                <input type="radio" name="questao02" value="excelente" checked="checked">
+                                <input type="radio" name="questao02" value="Excelente" checked="checked">
                                 <div class="item-inner">
                                     <div class="item-title">Excelente</div>
                                 </div>
@@ -148,7 +202,7 @@ $usuarioRecebido = $_SESSION['usuario'];
 
                             <label class="label-radio item-content">
                                 <!-- Checked by default -->
-                                <input type="radio" name="questao02" value="satisfatorio">
+                                <input type="radio" name="questao02" value="Satisfatório">
                                 <div class="item-inner">
                                     <div class="item-title">Satisfatório</div>
                                 </div>
@@ -156,7 +210,7 @@ $usuarioRecebido = $_SESSION['usuario'];
 
                             <label class="label-radio item-content">
                                 <!-- Checked by default -->
-                                <input type="radio" name="questao02" value="insatisfatorio">
+                                <input type="radio" name="questao02" value="Insatisfatório">
                                 <div class="item-inner">
                                     <div class="item-title">Insatisfatório</div>
                                 </div>
@@ -174,7 +228,7 @@ $usuarioRecebido = $_SESSION['usuario'];
                         <div class="form_row_right">
                             <label class="label-radio item-content">
                                 <!-- Checked by default -->
-                                <input type="radio" name="questao03" value="excelente" checked="checked">
+                                <input type="radio" name="questao03" value="Excelente" checked="checked">
                                 <div class="item-inner">
                                     <div class="item-title">Excelente</div>
                                 </div>
@@ -182,7 +236,7 @@ $usuarioRecebido = $_SESSION['usuario'];
 
                             <label class="label-radio item-content">
                                 <!-- Checked by default -->
-                                <input type="radio" name="questao03" value="satisfatorio">
+                                <input type="radio" name="questao03" value="Satisfatório">
                                 <div class="item-inner">
                                     <div class="item-title">Satisfatório</div>
                                 </div>
@@ -190,7 +244,7 @@ $usuarioRecebido = $_SESSION['usuario'];
 
                             <label class="label-radio item-content">
                                 <!-- Checked by default -->
-                                <input type="radio" name="questao03" value="insatisfatorio">
+                                <input type="radio" name="questao03" value="Insatisfatório">
                                 <div class="item-inner">
                                     <div class="item-title">Insatisfatório</div>
                                 </div>
@@ -206,7 +260,7 @@ $usuarioRecebido = $_SESSION['usuario'];
                         <div class="form_row_right">
                             <label class="label-radio item-content">
                                 <!-- Checked by default -->
-                                <input type="radio" name="questao04" value="excelente" checked="checked">
+                                <input type="radio" name="questao04" value="Excelente" checked="checked">
                                 <div class="item-inner">
                                     <div class="item-title">Excelente</div>
                                 </div>
@@ -214,7 +268,7 @@ $usuarioRecebido = $_SESSION['usuario'];
 
                             <label class="label-radio item-content">
                                 <!-- Checked by default -->
-                                <input type="radio" name="questao04" value="satisfatorio">
+                                <input type="radio" name="questao04" value="Satisfatório">
                                 <div class="item-inner">
                                     <div class="item-title">Satisfatório</div>
                                 </div>
@@ -222,7 +276,7 @@ $usuarioRecebido = $_SESSION['usuario'];
 
                             <label class="label-radio item-content">
                                 <!-- Checked by default -->
-                                <input type="radio" name="questao04" value="insatisfatorio">
+                                <input type="radio" name="questao04" value="Insatisfatório">
                                 <div class="item-inner">
                                     <div class="item-title">Insatisfatório</div>
                                 </div>
@@ -238,7 +292,7 @@ $usuarioRecebido = $_SESSION['usuario'];
                         <div class="form_row_right">
                             <label class="label-radio item-content">
                                 <!-- Checked by default -->
-                                <input type="radio" name="questao05" value="excelente" checked="checked">
+                                <input type="radio" name="questao05" value="Excelente" checked="checked">
                                 <div class="item-inner">
                                     <div class="item-title">Excelente</div>
                                 </div>
@@ -246,7 +300,7 @@ $usuarioRecebido = $_SESSION['usuario'];
 
                             <label class="label-radio item-content">
                                 <!-- Checked by default -->
-                                <input type="radio" name="questao05" value="satisfatorio">
+                                <input type="radio" name="questao05" value="Satisfatório">
                                 <div class="item-inner">
                                     <div class="item-title">Satisfatório</div>
                                 </div>
@@ -254,7 +308,7 @@ $usuarioRecebido = $_SESSION['usuario'];
 
                             <label class="label-radio item-content">
                                 <!-- Checked by default -->
-                                <input type="radio" name="questao05" value="insatisfatorio">
+                                <input type="radio" name="questao05" value="Insatisfatório">
                                 <div class="item-inner">
                                     <div class="item-title">Insatisfatório</div>
                                 </div>
@@ -270,7 +324,7 @@ $usuarioRecebido = $_SESSION['usuario'];
                         <div class="form_row_right">
                             <label class="label-radio item-content">
                                 <!-- Checked by default -->
-                                <input type="radio" name="questao06" value="excelente" checked="checked">
+                                <input type="radio" name="questao06" value="Excelente" checked="checked">
                                 <div class="item-inner">
                                     <div class="item-title">Excelente</div>
                                 </div>
@@ -278,7 +332,7 @@ $usuarioRecebido = $_SESSION['usuario'];
 
                             <label class="label-radio item-content">
                                 <!-- Checked by default -->
-                                <input type="radio" name="questao06" value="satisfatorio">
+                                <input type="radio" name="questao06" value="Satisfatório">
                                 <div class="item-inner">
                                     <div class="item-title">Satisfatório</div>
                                 </div>
@@ -286,7 +340,7 @@ $usuarioRecebido = $_SESSION['usuario'];
 
                             <label class="label-radio item-content">
                                 <!-- Checked by default -->
-                                <input type="radio" name="questao06" value="insatisfatorio">
+                                <input type="radio" name="questao06" value="Insatisfatório">
                                 <div class="item-inner">
                                     <div class="item-title">Insatisfatório</div>
                                 </div>
@@ -299,12 +353,12 @@ $usuarioRecebido = $_SESSION['usuario'];
 
 
                     <div class="form_row">
-               <label>Parecer Observador:</label>
+               <label>Parecer do Observador:</label>
                 <textarea name="parecer" class="form_textarea" rows="20" cols="" placeholder="Digite aqui o seu parecer"></textarea>
                 </div>
 
-
-                <input type="submit" name="submit" class="form_submit open-indicator" id="submit" value="Enviar" />
+                        <input type="hidden" value="cadastrar" name="envio">
+                <input type="submit" name="cadastrar" class="form_submit open-indicator"  value="Enviar" />
                 </form>
                 </div>
 
@@ -318,3 +372,4 @@ $usuarioRecebido = $_SESSION['usuario'];
     </div>
   </div>
 </div>
+
